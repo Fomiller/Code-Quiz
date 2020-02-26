@@ -1,0 +1,20 @@
+body{
+    background-color: #C4CBCA;
+}
+
+.active {
+    color: #E8335B;
+}
+a {
+    color: #E8335B;
+    text-decoration: none;
+}
+a:hover {
+    color: #A92643;
+}
+
+.div__timer {
+    color: #E8335B;
+    background-color: #F7F4F3 ;
+    padding: .5rem 1rem;
+}
