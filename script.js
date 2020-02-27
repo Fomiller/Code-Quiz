@@ -7,16 +7,45 @@
 
 // create object of all questions with
 $(document).ready(function(){
-    globalVariable = [0];
+    // define variables
+    var globalVariable = [0];
+    var createBtn = $("<button>");
+    var answerBtn1 = $("#answerBtn1");
+    var answerBtn2 = $("#answerBtn2");
+    var answerBtn3 = $("#answerBtn3");
+    var answerBtn4 = $("#answerBtn4");
+    var questionTitle = $("#question-title");
 
-    // clears slate for new HTML to be written
+
+    // removes start button
+    var removeStartBtn = function() {
+        $("startbtn").attr("style", "display: none")
+    }
+
     // deletes HTML inside container
-    function clearHTML() {
+    var clearHTML = function() {
         $("#quiz-title").empty();
+        $("#quiz-description").empty();
         $("#question-title").empty();
-        $("#card-text").empty();
         $("#quiz-title").empty();
     }
+
+    // renders question info
+    var renderQuestion = function (){
+        // creates title text
+        questionTitle.text(gameObject[globalVariable].question);
+        // fills answer 1 text
+        answerBtn1.text(gameObject[globalVariable].answer01);
+        // fills answer 1 text
+        answerBtn2.text(gameObject[globalVariable].answer02);
+        // fills answer 1 text
+        answerBtn3.text(gameObject[globalVariable].answer03);
+        // fills answer 1 text
+        answerBtn4.text(gameObject[globalVariable].answer04);
+
+        globalVariable++;
+    }
+
 
     var gameObject = [
         {
@@ -69,17 +98,23 @@ $(document).ready(function(){
             console.log("WRONG!")
         }
     }
+
+
+    // removes start button and renders the first title tag
+    function runGame(){
+        removeStartBtn();
+        // console.log(gameObject[globalVariable]);
+    }
+// Removes start button
+
     
     function startGame() {
         console.log("working");
-        runGame();
+        clearHTML();
+        // runGame();
+        renderQuestion();
     };
     
-    function runGame(){
-        $("startbtn").attr("style", "display: none")
-        // console.log(gameObject[globalVariable]);
-        $("#question-title").text(gameObject[globalVariable].question);
-    }
     
     
     
