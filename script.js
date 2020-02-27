@@ -19,7 +19,7 @@ $(document).ready(function(){
 
     // removes start button
     var removeStartBtn = function() {
-        $("startbtn").attr("style", "display: none")
+        $("#startbtn").addClass("invisible");
     }
 
     // deletes HTML inside container
@@ -92,7 +92,7 @@ $(document).ready(function(){
 
     function compareAnswer(){
         // answer will have to be a .this
-        if(gameObject[0].answer01 == gameObject[0].correct[0]){
+        if(gameObject[globalVariable].answer01 == gameObject[globalVariable].correct){
             console.log("CORRECT!")
         } else {
             console.log("WRONG!")
@@ -106,13 +106,20 @@ $(document).ready(function(){
         // console.log(gameObject[globalVariable]);
     }
 // Removes start button
-
+    var showGameBtns = function () {
+        answerBtn1.removeClass("invisible");
+        answerBtn2.removeClass("invisible");
+        answerBtn3.removeClass("invisible");
+        answerBtn4.removeClass("invisible");
+    }
     
     function startGame() {
         console.log("working");
-        clearHTML();
         // runGame();
+        clearHTML();
+        showGameBtns();
         renderQuestion();
+
     };
     
     

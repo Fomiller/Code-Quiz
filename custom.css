@@ -18,3 +18,11 @@ a:hover {
     background-color: #F7F4F3 ;
     padding: .5rem 1rem;
 }
+
+.invisible {
+    display: none;
+}
+
+.qBtn {
+    width: 100%;
+}
