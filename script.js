@@ -172,6 +172,7 @@ $(document).ready(function(){
 
     }
     
+    // adds 1 to the global variable which is used to acces the gameobject array
     var increaseGlobalV = function(){
         globalVariable++;
         console.log("global " + globalVariable)
@@ -217,6 +218,7 @@ $(document).ready(function(){
         }, 1000);
     }
 
+    // removes 10 seconds if you get an answer wrong
     var subtractTime = function() {
         clearInterval(timer);
         sec = sec - 10;
@@ -242,7 +244,7 @@ $(document).ready(function(){
         createInitInput();
     }
 
-
+    // functions that run at the start of the game
     var startGame = function() {
         console.log("Game Running");
         countdownTimer();
@@ -253,15 +255,25 @@ $(document).ready(function(){
         
     };
 
+
+// Functions below are used for the endGame inital gathering and submit button 
+
     var createInitInput = function(){
+        var createDiv = $("<div>");
         var textInput = $('<input/>');
         var subBtn = $('<button>');
+        
+        createDiv.attr("id", "init-form")
+        createDiv.appendTo($("#div_title"))
+
         subBtn.attr("id", 'submitBtn')
-        subBtn.attr("class", 'btn btn-success')
+        subBtn.attr("class", 'btn btn-success subBTN')
         subBtn.text("Submit")
+
         textInput.attr({ type: 'text', id: 'init-input',});
-        textInput.appendTo($("#content"));
-        subBtn.append($("#content"));
+        textInput.appendTo($("#init-form"));
+
+        subBtn.appendTo($("#init-form"));
     }
 
     var displayMessage = function(){
@@ -287,15 +299,22 @@ $(document).ready(function(){
         console.log(player)
         localStorage.setItem("player", JSON.stringify(player));
     }
-
-    var sub = function(){
-        console.log($("#init-input").value.trim())
-    }
-    
-    
     // localStorage.setItem({"Player Name", "Forrest" "Score", "10",})
 
-    $("#submitBtn").on("click", sub);
+
+
+
+
+
+
+
+    // used to test submitBTN
+    // var sub = function(){
+    //     console.log($("#init-input").value.trim())
+    // }
+    
+
+    $(".submitBtn").on("click", storePlayer);
     $("#startBtn").on("click", startGame);
     $(".gameBtn").on("click", gameBtn);
 
