@@ -254,69 +254,71 @@ $(document).ready(function(){
         renderQuestion();
         
     };
-
-
-// Functions below are used for the endGame inital gathering and submit button 
-
-    var createInitInput = function(){
-        var createDiv = $("<div>");
-        var textInput = $('<input/>');
-        var subBtn = $('<button>');
-        
-        createDiv.attr("id", "init-form")
-        createDiv.appendTo($("#div_title"))
-
-        subBtn.attr("id", 'submitBtn')
-        subBtn.attr("class", 'btn btn-success subBTN')
-        subBtn.text("Submit")
-
-        textInput.attr({ type: 'text', id: 'init-input',});
-        textInput.appendTo($("#init-form"));
-
-        subBtn.appendTo($(".card"));
-    }
-
+    
+    
+    // Functions below are used for the endGame inital gathering and submit button 
     var displayMessage = function(){
         alert("Players' initials can not be blank.")
     }
-
-    var storePlayer = function(event){
-        event.preventDefault();
-
-        console.log("store player")
-        // console.log($("#initial-input").value.trim());
-
-        var player = {
-            name: "forrest",
-            name: $("#init-input").value.trim(),
-            score: score,
-        };
-
-        if (player.name ===""){
-            displayMessage();
-        }
-
-        console.log(player)
-        localStorage.setItem("player", JSON.stringify(player));
-    }
-    // localStorage.setItem({"Player Name", "Forrest" "Score", "10",})
-
-
-
-
-var target = function(event){
-    console.log(event.target)
+    
+var createInitInput = function(){
+    var createDiv = $("<div>");
+    var textInput = $('<input/>');
+    var subBtn = $('<button>');
+    
+    createDiv.attr("id", "init-form")
+    createDiv.appendTo($("#div_title"))
+    
+    subBtn.attr("id", 'submitBtn')
+    subBtn.attr("class", 'btn btn-success subBTN')
+    subBtn.text("Submit")
+    subBtn.on("click", storePlayer);
+    
+    textInput.attr({ type: 'text', id: 'init-input', value: '',});
+    textInput.appendTo($("#init-form"));
+    
+    subBtn.appendTo($(".card"));
 }
 
+var storePlayer = function(event){
+    event.preventDefault();
+
+    console.log("store player")
+
+    var player = {
+        // name: "forrest",
+        name: $("#init-input").val(),
+        score: score,
+    };
+
+    if (player.name ===""){
+        displayMessage();
+    }
+
+    console.log(player)
+    localStorage.setItem("player", JSON.stringify(player));
+}
+// localStorage.setItem({"Player Name", "Forrest" "Score", "10",})
 
 
+
+
+
+    
+    
+    
     // used to test submitBTN
     // var sub = function(){
-    //     console.log($("#init-input").value.trim())
-    // }
-    
-
-    $("#submitBtn").on("click", target);
+        //     console.log($("#init-input").value.trim())
+        // }
+        
+        var target = function(event){
+            console.log(event.target)
+        }
+        
+        
+        
+    $("#body").on("click", target);
     $("#startBtn").on("click", startGame);
     $(".gameBtn").on("click", gameBtn);
 
