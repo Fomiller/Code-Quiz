@@ -273,7 +273,7 @@ $(document).ready(function(){
         textInput.attr({ type: 'text', id: 'init-input',});
         textInput.appendTo($("#init-form"));
 
-        subBtn.appendTo($("#init-form"));
+        subBtn.appendTo($(".card"));
     }
 
     var displayMessage = function(){
@@ -304,7 +304,9 @@ $(document).ready(function(){
 
 
 
-
+var target = function(event){
+    console.log(event.target)
+}
 
 
 
@@ -314,7 +316,7 @@ $(document).ready(function(){
     // }
     
 
-    $(".submitBtn").on("click", storePlayer);
+    $("#submitBtn").on("click", target);
     $("#startBtn").on("click", startGame);
     $(".gameBtn").on("click", gameBtn);
 
