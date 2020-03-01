@@ -24,7 +24,7 @@ $(document).ready(function(){
             "id": "q01",
             "question": "What does HTML stand for?",
             "answer01": "Hyper Text Mark-up Language",
-            "answer02": "Huge tall Tanly Language",
+            "answer02": "None of the above",
             "answer03": "Hyper Text Mark Language",
             "answer04": "Happy Tree Making Language",
             "correct": ["Hyper Text Mark-up Language"]
@@ -78,7 +78,7 @@ $(document).ready(function(){
         },
         {
             "id": "q07",
-            "question": "How do you link a javaScipt file?",
+            "question": "How dogit a you link a javaScipt file?",
             "answer01": "Inside a link tag",
             "answer02": "Inside a head tag",
             "answer03": "Inside a script tag",

@@ -23,3 +23,9 @@ a:hover {
 .qBtn {
     width: 100%;
 }
+
+@media only screen and (max-width: 400px) {
+    body{
+        min-height: 1000px;
+    }
+}
