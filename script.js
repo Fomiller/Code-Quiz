@@ -144,10 +144,10 @@ $(document).ready(function(){
 
     // Removes start button
     var showGameBtns = function () {
-        answerBtn1.removeClass("invisible");
-        answerBtn2.removeClass("invisible");
-        answerBtn3.removeClass("invisible");
-        answerBtn4.removeClass("invisible");
+        answerBtn1.removeClass("d-none");
+        answerBtn2.removeClass("d-none");
+        answerBtn3.removeClass("d-none");
+        answerBtn4.removeClass("d-none");
     }
 
     
@@ -246,6 +246,7 @@ $(document).ready(function(){
 
     // functions that run at the start of the game
     var startGame = function() {
+        $("#startBtn").addClass("d-none");
         console.log("Game Running");
         countdownTimer();
         removeStartBtn();
@@ -274,7 +275,7 @@ $(document).ready(function(){
         // subBtn.text("Submit")
         // subBtn.on("click", storePlayer);
 
-        $("#SBTN").removeClass("d-none")
+        $("#sub-btn").removeClass("d-none")
 
         textInput.attr({ type: 'text', id: 'init-input', value: '',});
         textInput.appendTo($("#init-form"));
@@ -335,7 +336,7 @@ $(document).ready(function(){
         }
     };
     
-    $("#SBTN").on("click", storePlayer);
+    $("#sub-btn").on("click", storePlayer);
     $("#test").on("click", createHS);
     $("#HS-btn").on("click", hsRedirect);
     $("#startBtn").on("click", startGame);
