@@ -7,6 +7,7 @@
 
 // create object of all questions with
 $(document).ready(function(){
+
     // define variables
     var globalVariable = [0];
     var score = 0;
@@ -17,7 +18,6 @@ $(document).ready(function(){
     var answerBtn3 = $("#answerBtn3");
     var answerBtn4 = $("#answerBtn4");
     var questionTitle = $("#question-title");
-    // var submitButton = $("#submitBtn");
 
     var gameObject = [
         {
@@ -261,65 +261,87 @@ $(document).ready(function(){
         alert("Players' initials can not be blank.")
     }
     
-var createInitInput = function(){
-    var createDiv = $("<div>");
-    var textInput = $('<input/>');
-    var subBtn = $('<button>');
-    
-    createDiv.attr("id", "init-form")
-    createDiv.appendTo($("#div_title"))
-    
-    subBtn.attr("id", 'submitBtn')
-    subBtn.attr("class", 'btn btn-success subBTN')
-    subBtn.text("Submit")
-    subBtn.on("click", storePlayer);
-    
-    textInput.attr({ type: 'text', id: 'init-input', value: '',});
-    textInput.appendTo($("#init-form"));
-    
-    subBtn.appendTo($(".card"));
-}
+    var createInitInput = function(){
+        var createDiv = $("<div>");
+        var textInput = $('<input/>');
 
-var storePlayer = function(event){
-    event.preventDefault();
+        // var subBtn = $('<button>');
 
-    console.log("store player")
+        createDiv.attr("id", "init-form")
+        createDiv.appendTo($("#div_title"))
 
-    var player = {
-        // name: "forrest",
-        name: $("#init-input").val(),
-        score: score,
-    };
+        // subBtn.attr({"id": 'submitBtn', "class": 'btn btn-success'})
+        // subBtn.text("Submit")
+        // subBtn.on("click", storePlayer);
 
-    if (player.name ===""){
-        displayMessage();
+        $("#SBTN").removeClass("d-none")
+
+        textInput.attr({ type: 'text', id: 'init-input', value: '',});
+        textInput.appendTo($("#init-form"));
+        subBtn.appendTo($(".card"));
     }
 
-    console.log(player)
-    localStorage.setItem("player", JSON.stringify(player));
-}
-// localStorage.setItem({"Player Name", "Forrest" "Score", "10",})
+    var storePlayer = function(event){
+        event.preventDefault();
+        users = JSON.parse(localStorage.getItem('session')) || [];
+        localStorage.setItem("users", JSON.stringify(users))        
 
-
-
-
-
-    
-    
-    
-    // used to test submitBTN
-    // var sub = function(){
-        //     console.log($("#init-input").value.trim())
-        // }
+        var player = {
+            name: $("#init-input").val(),
+            score: score,
+            };
         
-        var target = function(event){
-            console.log(event.target)
+        if (player.name ===""){
+            displayMessage();
+            } else {
+                users.push(player);
+                localStorage.setItem("session", JSON.stringify(users));
+                hsRedirect();
+            }
+        
+        
+        // auto redirects to highscore page
+    }
+
+    // Highscores logic
+    // redirect to Highscores page
+    var hsRedirect = function() {
+        window.location.href = "highscores.html"
+    }
+
+    var createHS = function () {
+
+        // set Parsed JSON to variable
+        var allScores = JSON.parse(localStorage.getItem('session'))
+        // sort allScores variable in descending order
+        allScores.sort((a, b) => b.score - a.score);
+        // For Each element in all scores array create a row and data tag and add to page
+        allScores.forEach(element => {
+            var rowEl = $("<tr>")
+            var tdName = $("<td>")
+            var tdScore = $("<td>")
+            // add name and score to table data
+            tdName.text(element.name)
+            tdScore.text(element.score)
+            // append row to table body then fill with data
+            rowEl.appendTo($("#t-body"))
+            rowEl.append(tdName, tdScore)
+        });
+    }
+
+    var highscorePage = function() {
+        if ($('body').is('.HS-body')) {
+          createHS();
         }
-        
-        
-        
-    $("#body").on("click", target);
+    };
+    
+    $("#SBTN").on("click", storePlayer);
+    $("#test").on("click", createHS);
+    $("#HS-btn").on("click", hsRedirect);
     $("#startBtn").on("click", startGame);
     $(".gameBtn").on("click", gameBtn);
-
+    
+    // only calls if page is = to highscores.html
+    highscorePage();
+    
 });
