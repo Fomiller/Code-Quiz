@@ -78,12 +78,12 @@ $(document).ready(function(){
         },
         {
             "id": "q07",
-            "question": "How can you include a script tag?",
+            "question": "How do you link a javaScipt file?",
             "answer01": "Inside a link tag",
             "answer02": "Inside a head tag",
-            "answer03": "Iniside a script tag",
+            "answer03": "Inside a script tag",
             "answer04": "Inside the body tag",
-            "correct": ["Iniside a script tag"],
+            "correct": ["Inside a script tag"],
         },
         {
             "id": "q08",
